@@ -3,7 +3,8 @@
 // Change to: https://github.com/user/project/blob/main/sounds/success.wav?raw=true
 const SOUND_PATHS = {
     success: './sounds/success.wav',
-    failure: './sounds/failure.wav'
+    failure: './sounds/failure.wav',
+    background: './sounds/background.mp3'
 };
 
 // Game State
@@ -15,6 +16,7 @@ const gameState = {
     letterByLetterEnabled: false, // Toggle for text animation
     timerEnabled: false, // Toggle for time limit
     soundEnabled: false, // Toggle for sound effects
+    backgroundMusicEnabled: false, // Toggle for background music
     timerInterval: null,
     timerTimeout: null,
     responseTimeLimit: 30000 // 30 seconds per response
@@ -172,6 +174,7 @@ const endScreen = document.getElementById('end-screen');
 const toggleAnimation = document.getElementById('toggle-animation');
 const toggleTimer = document.getElementById('toggle-timer');
 const toggleSound = document.getElementById('toggle-sound');
+const toggleBackgroundMusic = document.getElementById('toggle-background-music');
 const timerBarContainer = document.getElementById('timer-bar-container');
 const timerBar = document.getElementById('timer-bar');
 
@@ -181,6 +184,9 @@ let typingIndicatorElement = null;
 // Audio objects
 const audioSuccess = new Audio(SOUND_PATHS.success);
 const audioFailure = new Audio(SOUND_PATHS.failure);
+const audioBackground = new Audio(SOUND_PATHS.background);
+audioBackground.loop = true; // Loop background music
+audioBackground.volume = 0.3; // Lower volume for background music
 
 // Context panel buttons
 document.querySelectorAll('.context-btn').forEach(btn => {
@@ -235,6 +241,17 @@ toggleTimer.addEventListener('click', function() {
 toggleSound.addEventListener('click', function() {
     gameState.soundEnabled = !gameState.soundEnabled;
     this.classList.toggle('active');
+});
+
+toggleBackgroundMusic.addEventListener('click', function() {
+    gameState.backgroundMusicEnabled = !gameState.backgroundMusicEnabled;
+    this.classList.toggle('active');
+    
+    if (gameState.backgroundMusicEnabled) {
+        audioBackground.play().catch(err => console.log('Background music play failed:', err));
+    } else {
+        audioBackground.pause();
+    }
 });
 
 // Letter-by-letter typing animation
