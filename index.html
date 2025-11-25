@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant - Crime Adventure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Timer Bar (Top) -->
+    <div class="timer-bar-container" id="timer-bar-container">
+        <div class="timer-bar" id="timer-bar"></div>
+    </div>
+
+    <div class="game-container">
+        <!-- Header with context buttons and trust indicator -->
+        <header class="game-header">
+            <div class="context-buttons">
+                <button id="btn-calendar" class="context-btn">Kalendertermine</button>
+                <button id="btn-emails" class="context-btn">Emails</button>
+                <button id="btn-weather" class="context-btn">Wetter</button>
+                <button id="btn-watch" class="context-btn">Applewatch</button>
+            </div>
+            <div class="trust-indicator">
+                <div class="heart-icon">♥</div>
+                <div class="trust-percentage" id="trust-percentage">50 %</div>
+            </div>
+        </header>
+
+        <!-- Main chat area -->
+        <div class="chat-container" id="chat-container">
+            <div class="chat-messages" id="chat-messages">
+                <!-- Messages will be added here dynamically -->
+            </div>
+        </div>
+
+        <!-- Score info -->
+        <div class="score-info" id="score-info">
+            Score Veränderung: +-10 % Antwort 1 = Richtig
+        </div>
+    </div>
+
+    <!-- Settings Toggles (Bottom Left) -->
+    <div class="settings-toggles">
+        <div class="toggle-item">
+            <span class="toggle-label">Buchstaben-Animation</span>
+            <div class="toggle-switch" id="toggle-animation">
+                <div class="toggle-slider"></div>
+            </div>
+        </div>
+        <div class="toggle-item">
+            <span class="toggle-label">Zeitlimit</span>
+            <div class="toggle-switch" id="toggle-timer">
+                <div class="toggle-slider"></div>
+            </div>
+        </div>
+        <div class="toggle-item">
+            <span class="toggle-label">Soundeffekte</span>
+            <div class="toggle-switch" id="toggle-sound">
+                <div class="toggle-slider"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Panel: Calendar -->
+    <div class="overlay" id="overlay-calendar">
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Kalendertermine</h2>
+                <button class="close-btn" data-overlay="overlay-calendar">&times;</button>
+            </div>
+            <div class="panel-content">
+                <div class="calendar-event">
+                    <strong>Heute, 18:00 Uhr</strong>
+                    <p>Treffen mit M.W.</p>
+                    <p style="color: #888; font-size: 13px;">📍 Café Aurora</p>
+                    <p style="color: #ff6b6b; font-size: 12px; margin-top: 8px;">⚠️ Nicht als erledigt markiert</p>
+                </div>
+                <div class="calendar-event">
+                    <strong>Morgen</strong>
+                    <p>Keine Termine</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Panel: Emails -->
+    <div class="overlay" id="overlay-emails">
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Emails</h2>
+                <button class="close-btn" data-overlay="overlay-emails">&times;</button>
+            </div>
+            <div class="panel-content">
+                <div class="email-item">
+                    <strong>Von: team@techcorp.de</strong>
+                    <p>Betreff: Sprint Planning - Morgen 10:00</p>
+                    <p class="email-preview">Hey Lukas, nicht vergessen: Sprint Planning morgen um 10 Uhr...</p>
+                </div>
+                <div class="email-item">
+                    <strong>Von: system@calendar-sync.com</strong>
+                    <p>Betreff: Terminerinnerung bestätigt</p>
+                    <p class="email-preview">Ihr Termin mit M.W. heute um 18:00 wurde automatisch eingetragen...</p>
+                </div>
+                <div class="email-item">
+                    <strong>Von: info@cafe-aurora.de</strong>
+                    <p>Betreff: Ihre Reservierung</p>
+                    <p class="email-preview">Vielen Dank für Ihre Reservierung heute um 18:00 Uhr...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Panel: Weather -->
+    <div class="overlay" id="overlay-weather">
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Wetter</h2>
+                <button class="close-btn" data-overlay="overlay-weather">&times;</button>
+            </div>
+            <div class="panel-content">
+                <div class="weather-info">
+                    <p><strong>Heute:</strong> 15°C, Bewölkt</p>
+                    <p><strong>Morgen:</strong> 18°C, Sonnig</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Panel: Watch -->
+    <div class="overlay" id="overlay-watch">
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Applewatch</h2>
+                <button class="close-btn" data-overlay="overlay-watch">&times;</button>
+            </div>
+            <div class="panel-content">
+                <div class="watch-info">
+                    <p><strong>Schritte heute:</strong> 5,234</p>
+                    <p><strong>Herzfrequenz:</strong> 72 bpm</p>
+                    <p><strong>Aktivität:</strong> 30 Min</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Screen -->
+    <div class="overlay" id="end-screen">
+        <div class="end-panel">
+            <div class="end-content" id="end-content">
+                <!-- End screen content will be added dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
+
